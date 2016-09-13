@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+  <link rel="icon" type="image/png" sizes="96x96" href="./img/favicon.png" />
+  <!-- build:bundleCSS -->
+  <link rel="stylesheet" href="./bower_components/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet"
+        href="./bower_components/angular-treasure-overlay-spinner/dist/treasure-overlay-spinner.min.css" />
+  <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css" />
+  <!-- endbuild -->
+  <!-- build:appCSS -->
+  <link rel="stylesheet" href="./styles/common.css" />
+  <link rel="stylesheet" href="./styles/override.css" />
+  <link rel="stylesheet" href="./styles/style.css" />
+  <link rel="stylesheet" href="./styles/animate.css" />
+  <!-- endbuild -->
+  <title>떡밥밥</title>
+</head>
+<body ng-app="fish">
+<treasure-overlay-spinner active="!isLoaded">
+  <div ng-view id="appContent"></div>
+</treasure-overlay-spinner>
+<!-- build:bundleJS -->
+<script src="./bower_components/jquery/dist/jquery.min.js"></script>
+<script src="./bower_components/angular/angular.min.js"></script>
+<script src="./bower_components/angular-route/angular-route.min.js"></script>
+<script src="./bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="./bower_components/angular-sanitize/angular-sanitize.min.js"></script>
+<script src="./bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="./bower_components/angular-treasure-overlay-spinner/dist/treasure-overlay-spinner.min.js"></script>
+<!-- endbuild -->
+<!-- build:appJS -->
+<script src="./scripts/app.js"></script>
+<script src="./scripts/config/router.js"></script>
+<script src="./scripts/config/service.js"></script>
+<script src="./scripts/config/directives.js"></script>
+<script src="./scripts/ctrl/modal-ctrl.js"></script>
+<script src="./scripts/ctrl/main-ctrl.js"></script>
+<script src="./scripts/ctrl/login-ctrl.js"></script>
+<script src="./scripts/ctrl/sign-up-ctrl.js"></script>
+<script src="./scripts/ctrl/feed-ctrl.js"></script>
+<script src="./scripts/ctrl/modal-feed-ctrl.js"></script>
+<script src="./scripts/ctrl/temp-ctrl.js"></script>
+<script src="./scripts/ctrl/light-ctrl.js"></script>
+<script src="./scripts/ctrl/modal-light-ctrl.js"></script>
+<!-- endbuild -->
+</body>
+</html>

@@ -1,0 +1,37 @@
+<header ng-init="init()">
+  <h1 class="text-center">
+    <img src="./img/logo.png" alt="떡밥밥" id="logo" class="logo-login" />
+  </h1>
+  <a ng-href="#sign-up" class="lnk-nav pos-top-right">
+    <i class="fa fa-user-plus" aria-hidden="true">
+      <span class="sr-only">회원가입</span>
+    </i>
+  </a>
+</header>
+<section>
+  <h2 class="sr-only">앱 컨텐츠</h2>
+  <form id="frmUser" name="frmLogin" class="form-horizontal col-xs-10 text-center">
+    <label class="col-xs-12 p-no-side">
+      <div class="lbl col-xs-3" id="lblId">아이디</div>
+      <div class="col-xs-8 p-no-side pull-right">
+        <input type="text" name="id" class="col-xs-12 form-control" autocomplete="off" required="required"
+               ng-model="user.id" ng-pattern="regExpIdPw" ng-focus-me="focus.id" ng-focus="focus.id=true"
+               ng-blur="focus.id=false" uib-tooltip="영문/숫자 4~20자 입력해주세요." tooltip-trigger="'none'"
+               tooltip-is-open="focus.id && frmLogin.id.$invalid" />
+      </div>
+    </label>
+    <label id="lblLast" class="col-xs-12 p-no-side">
+      <div class="lbl col-xs-4" id="lblPw">비밀번호</div>
+      <div class="col-xs-8 p-no-side pull-right">
+        <input type="password" name="pw" class="col-xs-12 form-control" required="required" ng-model="user.pw"
+               ng-pattern="regExpIdPw" ng-focus-me="focus.pw" ng-focus="focus.pw=true" ng-blur="focus.pw=false"
+               uib-tooltip="영문/숫자 4~20자 입력해주세요." tooltip-trigger="'none'"
+               tooltip-is-open="focus.pw && frmLogin.pw.$invalid" />
+      </div>
+    </label><br />
+    <button type="submit" id="btnLogin" class="btn-func btn" ng-click="frmLogin.$invalid ? null : fnLogin()"
+            ng-class="{'disabled': frmLogin.$invalid}">
+      로그인
+    </button>
+  </form>
+</section>

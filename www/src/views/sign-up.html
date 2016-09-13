@@ -1,0 +1,57 @@
+<header ng-init="init()">
+  <h1 class="text-center">
+    <img src="./img/logo.png" alt="떡밥밥" id="logo" class="logo-login" />
+  </h1>
+  <a class="lnk-nav pos-top-left" ng-href="#login">
+    <i class="fa fa-arrow-left" aria-hidden="true">
+      <span class="sr-only">뒤로가기</span>
+    </i>
+  </a>
+</header>
+<section>
+  <h2 class="sr-only">앱 컨텐츠</h2>
+  <form id="frmUser" name="frmSignUp" class="form-horizontal col-xs-10 text-center">
+    <label class="col-xs-12 p-no-side">
+      <div class="lbl col-xs-4" id="lblArduinoId">아두이노 ID</div>
+      <div class="col-xs-6 p-no-side pull-right">
+        <input type="text" name="arduinoId" class="col-xs-12 form-control" autocomplete="off" required="required"
+               placeholder="xx-xx-xx-xx-xx-xx" ng-model="user.arduinoId" ng-pattern="regExpArduinoId"
+               ng-focus-me="focus.arduinoId" ng-focus="focus.arduinoId=true" ng-blur="focus.arduinoId=false"
+               uib-tooltip="xx-xx-xx-xx-xx-xx 형태의 16진수 문자로 입력해주세요." tooltip-trigger="'none'"
+               tooltip-is-open="focus.arduinoId && frmSignUp.arduinoId.$invalid" />
+      </div>
+    </label>
+    <label class="col-xs-12 p-no-side">
+      <div class="lbl col-xs-3" id="lblId">아이디</div>
+      <div class="col-xs-6 p-no-side pull-right">
+        <input type="text" name="id" class="col-xs-12 form-control" autocomplete="off" required="required"
+               placeholder="영문/숫자 4자 이상" ng-model="user.id" ng-pattern="regExpIdPw" ng-focus-me="focus.id"
+               ng-focus="focus.id=true" ng-blur="focus.id=false" uib-tooltip="영문/숫자 4~20자 입력해주세요."
+               tooltip-trigger="'none'" tooltip-is-open="focus.id && frmSignUp.id.$invalid" />
+      </div>
+    </label>
+    <label class="col-xs-12 p-no-side">
+      <div class="lbl col-xs-4" id="lblPw">비밀번호</div>
+      <div class="col-xs-6 p-no-side pull-right">
+        <input type="password" name="pw" id="pw" class="col-xs-12 form-control" required="required"
+               placeholder="영문/숫자 4자 이상" ng-model="user.pw" ng-pattern="regExpIdPw" ng-focus="focus.pw=true"
+               ng-blur="focus.pw=false" uib-tooltip="영문/숫자 4~20자 입력해주세요." tooltip-trigger="'none'"
+               tooltip-is-open="focus.pw && frmSignUp.pw.$invalid" />
+      </div>
+    </label>
+    <label id="lblLast" class="col-xs-12 p-no-side">
+      <div class="lbl col-xs-5" id="lblPw2">비밀번호 확인</div>
+      <div class="col-xs-6 p-no-side pull-right">
+        <input type="password" id="pw2" name="pw2" class="col-xs-12 form-control" required="required"
+               placeholder="영문/숫자 4자 이상" ng-model="user.pw2" pw-check="pw"
+               ng-class="{'ng-invalid': frmSignUp.pw.$error.pwmatch}" ng-focus="focus.pw2=true"
+               ng-blur="focus.pw2=false" uib-tooltip="비밀번호를 똑같이 입력해주세요." tooltip-trigger="'none'"
+               tooltip-is-open="focus.pw2 && frmSignUp.pw2.$invalid" />
+      </div>
+    </label><br />
+    <button type="submit" id="btnSignUp" class="btn-func btn" ng-click="frmSignUp.$invalid ? null : fnSignUp()"
+            ng-class="{'disabled': frmSignUp.$invalid}">
+      회원가입
+    </button>
+  </form>
+</section>

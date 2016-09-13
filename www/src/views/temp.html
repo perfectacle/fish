@@ -1,0 +1,24 @@
+<div id="heat" ng-init="init()">
+  <header>
+    <h1 id="barTitle">
+      <img src="./img/title-heat.png" alt="수온 관리" />
+    </h1>
+    <a class="lnk-nav pos-top-left" ng-click="goBack()">
+      <i class="fa fa-arrow-left" aria-hidden="true">
+        <span class="sr-only">뒤로가기</span>
+      </i>
+    </a>
+    <a class="lnk-nav pos-top-right" ng-click="getTemp()">
+      <i class="fa fa-refresh" aria-hidden="true">
+        <span class="sr-only">현재 온도 받아오기</span>
+      </i>
+    </a>
+  </header>
+  <section>
+    <h2 class="sr-only">앱 컨텐츠</h2>
+    <div class="text-center" id="boxTemp">
+      <span class="ico-temp"></span>
+      <div class="txt-temp">{{temp ? temp + '&deg;C' : '측정 중...'}}</div>
+    </div>
+  </section>
+</div>

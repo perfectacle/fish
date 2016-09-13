@@ -1,0 +1,148 @@
+/* 메인페이지 스타일 */
+#main {
+  margin-bottom : 32%
+}
+#gnb ul {
+  list-style : none;
+  padding    : 0
+}
+#gnb .col-xs-4 {
+  padding : 0 1% 0
+}
+.logo-main {
+  padding : 35% 0 15%;
+}
+/* 로그인&회원가입 페이지 스타일 */
+.logo-login {
+  padding : 20% 0 5%;
+}
+#frmUser {
+  float           : none;
+  margin          : 0 auto 10%;
+  padding-top     : 10%;
+  padding-bottom  : 5%;
+  background      : url('../img/bg-login.png') no-repeat;
+  background-size : 100% 100%;
+  border          : none
+}
+#frmUser input {
+  padding-left : 5px
+}
+#lblArduinoId {
+  background-image : url('../img/txt-arduino-id.png');
+}
+#lblId {
+  background-image : url('../img/txt-id.png');
+}
+#lblPw {
+  background-image : url('../img/txt-pw.png');
+}
+#lblPw2 {
+  background-image : url('../img/txt-pw2.png');
+}
+#lblLast {
+  margin-bottom : 10%;
+}
+/* 서브 페이지 공통 스타일 */
+#barTitle {
+  padding : 15% 0 5%;
+}
+#btnBack {
+  position : absolute;
+  top      : 1%;
+  left     : 1%;
+  width    : 7%;
+}
+.ng-invalid {
+  border        : 1px solid red;
+  border-radius : 4px;
+}
+/* 아래부턴 별개의 스타일 */
+#btnLogin {
+  background-image : url('../img/btn-login.png');
+  width            : 10em;
+  height           : 3em
+}
+#btnSignUp {
+  background-image : url('../img/btn-sign-up.png');
+  width            : 10em;
+  height           : 3em
+}
+#btnFeed {
+  background-image : url('../img/btn-feed.png')
+}
+#btnOnHeat {
+  background-image : url('../img/btn-on-heat.png')
+}
+#btnOffHeat {
+  background-image : url('../img/btn-off-heat.png')
+}
+#btnOnLight {
+  background-image : url('../img/btn-on-light.png')
+}
+#btnOffLight {
+  background-image : url('../img/btn-off-light.png')
+}
+/* 모달을 세로 중앙 정렬 */
+.modal {
+  text-align : center;
+  padding    : 0 !important;
+}
+.modal:before {
+  content        : '';
+  display        : inline-block;
+  height         : 100%;
+  vertical-align : middle;
+  margin-right   : -4px;
+}
+.modal-dialog {
+  display        : inline-block;
+  text-align     : left;
+  width          : 80%;
+  vertical-align : middle;
+}
+#frmModal {
+  background-color : transparent;
+  border           : none;
+}
+/* 모달에서 input과 글자의 높이를 맞추기 위함. */
+.txt-modal-lbl {
+  font-size   : 1.3em;
+  line-height : 34px
+}
+/* 툴팁에서 한글을 글자 단위로 쪼개서 줄바꿈. */
+.tooltip-inner {
+  word-break : keep-all;
+}
+/* 밥주기 */
+#cntFeed {
+  margin-right : 5%;
+  font-size    : 1.3em;
+  font-weight  : bold;
+  color        : blue;
+}
+#txt-set-feed {
+  margin-top  : 5%;
+  font-size   : 1.5em;
+  font-weight : bold;
+}
+/* 수온 페이지 */
+#boxTemp {
+  margin-top: 10%;
+  font-size: 2em;
+  font-weight: bold;
+}
+
+.ico-temp {
+  display: inline-block;
+  background-image: url('../img/ico-temp.png');
+  background-size: 100% 100%;
+  width: 15%;
+  height: 201px;
+}
+
+.txt-temp {
+  margin-top: -42%;
+  margin-left: 58%;
+  text-align: start;
+}

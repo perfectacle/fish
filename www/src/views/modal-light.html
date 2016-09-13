@@ -1,0 +1,26 @@
+<div class="modal-header">
+  <h3>조명 자동<span class="break"></span>ON/OFF 시간 설정</h3>
+</div>
+<div class="modal-body clearfix" id="modal-body" ng-init="initAlert()">
+  <form id="frmModal" name="frmLight" class="form-horizontal">
+    <label class="col-xs-12 p-no-side">
+      <div class="col-xs-4 p-no-side pull-left txt-modal-lbl">ON</div>
+      <div class="col-xs-7 p-no-side">
+        <input type="time" class="form-control" ng-model="onTime" ng-class="{'ng-invalid': offTime && !onTime}" />
+      </div>
+    </label><br />
+    <label class="col-xs-12 p-no-side">
+      <div class="col-xs-4 p-no-side pull-left txt-modal-lbl">OFF</div>
+      <div class="col-xs-7 p-no-side">
+        <input type="time" class="form-control" ng-model="offTime" ng-class="{'ng-invalid': onTime && !offTime}" />
+      </div>
+    </label>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-warning" type="button" ng-click="closeModal()">취소</button>
+  <button class="btn btn-primary" type="button"
+          ng-click="frmLight.$invalid || (offTime && !onTime) || (!offTime && onTime) ? '' : ok()"
+          ng-class="{'disabled': frmLight.$invalid || (offTime && !onTime) || (!offTime && onTime)}">확인
+  </button>
+</div>

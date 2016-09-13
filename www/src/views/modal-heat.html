@@ -1,0 +1,29 @@
+<div class="modal-header">
+  <h3>히터 자동<span class="break"></span>ON/OFF 온도 설정</h3>
+</div>
+<div class="modal-body clearfix" id="modal-body">
+  <form id="frmModal" name="frmHeat" class="form-horizontal">
+    <label class="col-xs-12 p-no-side">
+      <div class="col-xs-4 p-no-side pull-left txt-modal-lbl">히터 ON</div>
+      <div class="col-xs-2 p-no-side">
+        <input type="number" class="form-control" ng-model="onTemp" ng-required="offTemp"
+               ng-class="{'ng-invalid': onTemp > offTemp}" />
+      </div>
+      <div class="col-xs-5 txt-modal-lbl" style="padding-left: 10px">°C 미만</div>
+    </label>
+    <label class="col-xs-12 p-no-side">
+      <div class="col-xs-4 p-no-side pull-left txt-modal-lbl">히터 OFF</div>
+      <div class="col-xs-2 p-no-side">
+        <input type="number" class="form-control" ng-model="offTemp" ng-required="onTemp"
+               ng-class="{'ng-invalid': onTemp > offTemp}" />
+      </div>
+      <div class="col-xs-5 txt-modal-lbl" style="padding-left: 10px">°C 초과</div>
+    </label>
+  </form>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-warning" type="button" ng-click="closeModal()">취소</button>
+  <button class="btn btn-primary" type="button" ng-click="(frmHeat.$invalid || onTemp>offTemp) ? '' : ok()"
+          ng-class="{'disabled': frmHeat.$invalid || onTemp>offTemp}">확인
+  </button>
+</div>

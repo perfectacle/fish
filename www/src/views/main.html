@@ -1,0 +1,22 @@
+<div id="main" ng-init="init()">
+  <header>
+    <h1 class="text-center">
+      <img src="./img/logo.png" alt="떡밥밥" id="logo" class="logo-main" />
+    </h1>
+    <a class="lnk-nav pos-top-right" ng-click="fnLogout()">
+      <i class="fa fa-sign-out" aria-hidden="true">
+        <span class="sr-only">로그인</span>
+      </i>
+    </a>
+    <nav id="gnb">
+      <h2 class="sr-only">메뉴</h2>
+      <ul class="clearfix">
+        <li class="col-xs-4" ng-repeat="menu in menus">
+          <a ng-href="{{menu.url}}">
+            <img ng-src="{{menu.img}}" alt="{{menu.desc}}" />
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+</div>

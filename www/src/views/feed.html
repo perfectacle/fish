@@ -1,0 +1,37 @@
+<div id="feed" ng-init="init()">
+  <header>
+    <h1 id="barTitle">
+      <img src="./img/title-feed.png" alt="밥주기" />
+    </h1>
+    <a id="" class="lnk-nav pos-top-left" ng-click="goBack()">
+      <i class="fa fa-arrow-left" aria-hidden="true">
+        <span class="sr-only">뒤로가기</span>
+      </i>
+    </a>
+    <a class="lnk-nav pos-top-right" ng-click="Modal.modal('feed')">
+      <i class="fa fa-cog" aria-hidden="true">
+        <span class="sr-only">자동 밥주기 설정</span>
+      </i>
+    </a>
+  </header>
+  <section>
+    <h2 class="sr-only">앱 컨텐츠</h2>
+    <div class="text-center">
+      <div class="text-right">
+        <span id="cntFeed">오늘 밥 준 횟수: {{feedCnt}}회</span>
+      </div>
+      <div id="boxFeed">
+        {{feedTime ? (feedTime.substring(0,2) < 12 ? 'AM' : 'PM') : ''}}
+        {{feedTime ? (feedTime.substring(0,2) > 12 ? (feedTime.substring(0,2)-12 < 10 ? '0' +
+        (feedTime.substring(0,2)-12) : feedTime.substring(0,2)-12) + feedTime.substring(2,5) : feedTime)
+        : '밥 줄 시간 미지정'}}<br />
+        {{waitTime ? waitTime + '초간 대기' : '대기 시간 미지정'}}
+      </div>
+      <br />
+      <button type="button" id="btnFeed" class="btn-func btn" ng-click="isFeeded ? '' : fnFeed()"
+              ng-class="{'disabled': isFeeded}">
+        밥주기
+      </button>
+    </div>
+  </section>
+</div>

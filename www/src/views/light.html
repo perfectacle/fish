@@ -1,0 +1,33 @@
+<div id="light" ng-init="init()">
+  <header>
+    <h1 id="barTitle">
+      <img src="./img/title-light.png" alt="조명 관리" />
+    </h1>
+    <a class="lnk-nav pos-top-left" ng-click="goBack()">
+      <i class="fa fa-arrow-left" aria-hidden="true">
+        <span class="sr-only">뒤로가기</span>
+      </i>
+    </a>
+    <a class="lnk-nav pos-top-right" ng-click="Modal.modal('light')">
+      <i class="fa fa-cog" aria-hidden="true">
+        <span class="sr-only">조명 자동 ON/OFF 시간 설정</span>
+      </i>
+    </a>
+  </header>
+  <section>
+    <h2 class="sr-only">앱 컨텐츠</h2>
+    <div class="text-center">
+      <div class="text-right">
+        <span id="cntFeed">{{'조명: ' + (isOn ? '켜짐' : '꺼짐')}}</span>
+      </div>
+      <div id="boxFeed">
+        {{onTime ? onTime + '~' + offTime : '조명 시간 미지정'}}
+      </div>
+      <br />
+      <button type="button" ng-attr-id="{{isOn ? 'btnOffLight' : 'btnOnLight'}}" class="btn btn-func"
+              ng-click="disabled ? '' : (isOn ? offLight() : onLight())" ng-class="{disabled: disabled}">
+        {{isOn ? '조명 끄기' : '조명 켜기'}}
+      </button>
+    </div>
+  </section>
+</div>

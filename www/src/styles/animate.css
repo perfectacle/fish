@@ -1,0 +1,16 @@
+@charset "UTF-8";
+/* 페이지 전환 애니메이션 */
+#appContent.ng-enter {
+  -webkit-transition: all linear 300ms;
+  transition: all linear 300ms;
+  opacity: 0; }
+
+#appContent.ng-enter-active {
+  opacity: 1; }
+
+/* 로딩 스피너 스타일 */
+.treasure-overlay-spinner-content {
+  height: 100%; }
+
+.treasure-overlay-spinner-container {
+  background-color: transparent; }

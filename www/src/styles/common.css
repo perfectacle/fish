@@ -1,0 +1,57 @@
+@charset "UTF-8";
+html, body {
+  min-height: 100%;
+  min-width: 100%; }
+
+body {
+  background: url("../img/bg.jpg") no-repeat center center;
+  background-size: 100% 100%; }
+
+/* 푸터 이미지 사이즈 조정 */
+#copy {
+  width: 90%; }
+
+/* 이미지 반응형으로 */
+img {
+  max-width: 100%; }
+
+/* 상하 margin이 없어야 푸터가 아래로 안 밀려남. */
+h1 {
+  margin: 0; }
+
+/* br 없이 CSS로 줄바꿈 */
+.break:after {
+  content: '\A';
+  white-space: pre; }
+
+/* 패딩 없애는 유틸 클래스 */
+.p-no {
+  padding: 0; }
+
+.p-no-side {
+  padding-left: 0;
+  padding-right: 0; }
+
+/* 모달 다이얼로그에서 자유롭게 줄바꿈하기 위함. */
+.pre-normal {
+  background: transparent;
+  border: none;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px; }
+
+/* 페이지 좌우 상단에 배치되는 버튼들 */
+.pos-top-left {
+  left: 1%; }
+
+.pos-top-right {
+  right: 1%; }
+
+#boxFeed {
+  display: inline-block;
+  margin-bottom: 5%;
+  padding: 5%;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 2.8em;
+  font-weight: bold;
+  border: 2px solid black;
+  border-radius: 10px; }
