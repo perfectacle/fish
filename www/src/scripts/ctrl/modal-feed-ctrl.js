@@ -3,7 +3,7 @@ app.controller('ModalFeedCtrl', ['$rootScope', '$scope', '$http', '$uibModalInst
   // 경고창에서 포커스 주기 위한 초기화 함수.
   $rootScope.isShowModal = true;
   $scope.ok              = function() {
-    $rootScope.isLoaded = true;
+    $rootScope.isLoaded = false;
     var config = {
       params: {
         mode: 'upd',
