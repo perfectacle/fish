@@ -1,0 +1,25 @@
+<div id="feed" ng-init="init()">
+  <header>
+    <h1 id="barTitle">
+      <img src="./img/title-feed.png" alt="밥주기" />
+    </h1>
+    <a id="" class="lnk-nav pos-top-left" ng-click="goBack()">
+      <i class="fa fa-arrow-left" aria-hidden="true">
+        <span class="sr-only">뒤로가기</span>
+      </i>
+    </a>
+  </header>
+  <section>
+    <h2 class="sr-only">앱 컨텐츠</h2>
+    <div class="text-center">
+      <div id="boxFeed">
+        {{time}}
+      </div>
+      <br />
+      <button type="button" id="btnFeed" class="btn-func btn" ng-click="isLoadinged ? '' : getTime()"
+              ng-class="{'disabled': isLoadinged}">
+        시간 확인하기
+      </button>
+    </div>
+  </section>
+</div>

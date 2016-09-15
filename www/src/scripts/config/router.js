@@ -7,5 +7,6 @@ app.config(['$routeProvider', function($routeProvider) {
   .when('/feed', {title: '밥주기 - 떡밥밥', templateUrl: './views/feed.html', controller: 'FeedCtrl'})
   .when('/temp', {title: '수온 - 떡밥밥', templateUrl: './views/temp.html', controller: 'TempCtrl'})
   .when('/light', {title: '조명 관리 - 떡밥밥', templateUrl: './views/light.html', controller: 'LightCtrl'})
+  .when('/time', {title: '시간 테스트 - 떡밥밥', templateUrl: './views/time-test.html', controller: 'TimeTestCtrl'})
   .otherwise({redirectTo: '/'});
 }]);
