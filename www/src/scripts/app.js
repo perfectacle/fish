@@ -50,7 +50,7 @@ app.run(['$rootScope', '$route', '$http', '$location', '$routeParams', 'Modal', 
        .then(function(data) {
          $rootScope.isLoaded = true;
          if(data.data) {
-           $rootScope.arduino = "http://" + data.data['l_ip'] + ':' + data.data.port;
+           $rootScope.arduino = "http://" + data.data['p_ip'] + ':' + data.data.port;
          } else if(data.data === undefined) {
          }
        }, Modal.error);
