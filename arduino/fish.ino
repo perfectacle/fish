@@ -5,22 +5,31 @@
 #include <Servo.h>
 #include <OneWire.h>
 
+/*
+ * 상자 밖으로 나와야하는 것들은 앞에다 배치.
+ * SD 카드(4번 핀)과 와이파이(10~13번 핀)은 고정.
+ * 7번 핀은 왜인지 모르겠으나 제대로 작동을 안 함.
+ * 모터: 0, 수온: 1, 릴레이: 2, LED: 3, SD: 4, RTC: 6, 8, 9, WiFi: 10~13
+ */
 
-// RTC: 1~3, SD: 4, 수온: 6, 릴레이: 7, 모터: 8, LED: 9
-// LED가 켜져 있을 때만 통신을 해도 된다는 의미.
-
-const uint8_t PIN_RST = 1;
-const uint8_t PIN_DAT = 2;
-const uint8_t PIN_CLK = 3;
+const int PIN_MOTOR = 0;
+const int PIN_TEMP = 1;
+const int PIN_RELAY = 2;
+const int PIN_LEDS = 3;
 const int PIN_SD = 4;
-const int PIN_RELAY = 5;
-const int PIN_TEMP = 6;
-const int PIN_MOTOR = 8;
-const int PIN_LEDS = 9;
+const uint8_t PIN_RST = 5;
+const uint8_t PIN_DAT = 6;
+const uint8_t PIN_CLK = 8;
+
+/*
+ * 서보 모터가 0도에서 진동하면 MIN 값을 조금씩 높여주고,
+ * 180도에서 진동하면 MAX 값을 조금씩 낮춰줘야함.
+ */
+const int MIN_SERVO = 580;
+const int MAX_SERVO = 2400;
 
 Servo ms;
 OneWire ds(PIN_TEMP);
-
 char ssid[20]; // AP 이름
 char pass[20]; // AP 비밀번호
 int port = 7979; // 서비스하고자 하는 포트.
@@ -32,18 +41,17 @@ int status = WL_IDLE_STATUS; // 와이파이 쉴드의 상태를 표시하는 �
 WiFiServer server(port); // 아두이노를 웹서버로 만듦.
 String id, feedTime, waitTime, onTemp, offTemp, onTime, offTime; // SD 카드에 저장된 값들.
 String nowTime; // 현재 시간을 저장할 변수.
-DS1302 rtc(PIN_RST, PIN_DAT, PIN_CLK); // 리얼 타임 컨트롤러 객체를 만듦.
 float temp; // 온도값을 저장할 변수.
-
+DS1302 rtc(PIN_RST, PIN_DAT, PIN_CLK); // 리얼 타임 컨트롤러 객체를 만듦.
 
 void setup() {
   // 초기에 한번만 실행되는 코드로 세팅을 위한 코드들은 여기 넣어야함.
 
-  // 서보모터와 LED, 릴레이의 초기 설정.
-  ms.attach(PIN_MOTOR);
+  // 서보모터와 릴레이, LED의 초기 설정.
+  ms.attach(PIN_MOTOR, MIN_SERVO, MAX_SERVO);
   ms.write(0);
-  pinMode(PIN_RELAY, OUTPUT);
   pinMode(PIN_LEDS, OUTPUT);
+  pinMode(PIN_RELAY, OUTPUT);
 
   // 시리얼 통신을 하지 않을 경우에는 아래 begin과 while문을 주석 처리하면 됨.
   // PC가 아닌 다른 전원 공급 수단을 사용하는 경우에는 무조건 주석 처리해야 함.
@@ -60,6 +68,14 @@ void setup() {
     Serial.println("initialization failed!");
     return;
   }
+
+  // SD카드에 저장된 정보들을 불러옴.
+  id = getData("id"); // 유저 ID
+  feedTime = getData("feedtime"); // 밥 줄 시간
+  waitTime = getData("waittime"); // 밥을 줄 때 모터가 대기하는 시간
+  onTime = getData("ontime"); // 조명을 켤 시간
+  offTime = getData("offtime"); // 조명을 끌 시간
+
   delay(1000); // 이 딜레이가 없으면 시리얼 통신을 하지 않는 경우에는 와이파이 연결이 안 됨.
   Serial.println("initialization done.");
 
@@ -119,31 +135,23 @@ void setup() {
   }
   mac2.toUpperCase();
 
-  // 아두이노의 포트, 아이피를 등록.
+  // 아두이노의 현재 포트, 아이피를 DB에 등록.
   conServ("i4m1g.dothome.co.kr", "/php/ip.php", "mode=update&port=7979&l_ip=" + ip2 + "&mac=" + mac2);
 
-  // 시리얼 통신을 하지 않는 경우에 LED가 켜짐으로써 준비가 완료됐다는 걸 알리기 위함.
-  digitalWrite(PIN_LEDS, HIGH);
+  // 조명이 켜졌다고 DB에 저장된 채로 아두이노가 꺼졌을 경우를 대비해...
+  conServ("i4m1g.dothome.co.kr", "/php/func.php", "func=light&status=on&id=" + id);
+
+  // 시리얼 통신을 하지 않는 경우에 릴레이가 켜짐으로써 준비가 완료됐다는 걸 알리기 위함.
   digitalWrite(PIN_RELAY, HIGH);
-   delay(2000);
-  digitalWrite(PIN_RELAY, LOW);
-
-  // SD카드에 저장된 정보들을 불러옴.
-  id = getData("id"); // 유저 ID
-  feedTime = getData("feedtime"); // 밥 줄 시간
-  waitTime = getData("waittime"); // 밥을 줄 때 모터가 대기하는 시간
-  onTime = getData("ontime"); // 조명을 켤 시간
-  offTime = getData("offtime"); // 조명을 끌 시간
+  digitalWrite(PIN_LEDS, HIGH);
 }
-
 
 void loop() {
   // 반복적으로 실행되는 내용들.
   WiFiClient client = server.available();
   if (client) { // 새로운 클라이언트가 아두이노로 접속한 경우
 
-    // 시리얼 통신을 하지 않는 경우에 LED가 꺼짐으로써 통신 중이니
-    // 다른 데이터를 보내지 말라는 것을 알리기 위함.
+    // LED를 꺼버리는 이유는 LED가 켜졌을 때만 통신이 가능하다는 것을 알려주기 위함.
     digitalWrite(PIN_LEDS, LOW);
 
     Serial.println("\nnew client");
@@ -153,15 +161,19 @@ void loop() {
     while (client.connected()) {
       if (client.available()) {
         char c = client.read();
-        Serial.print(c);
         buffer += c;
         if (c == '\n' && currentLineIsBlank) { // 버퍼에 모든 내용을 다 담았을 때 실행 됨.
-          // send a standard http response header
-          client.println("HTTP/1.1 200 OK");
-          client.println("Content-Type: text/html");
-          client.println("Connection: close");  // 응답을 모두 완료한 후에 연결을 종료시킴.
-          client.println("Access-Control-Allow-Origin: *"); // CORS 요청을 어디서든 허용함.
-          client.println();
+          break;
+        }
+        if (c == '\n') { // 버퍼의 첫 번째 줄에 있는 내용을 가지고 판단함.
+          Serial.println(buffer);
+          if(buffer.indexOf("HTTP/1.1") >= 0) { // 클라이언트가 접속한 경우
+            client.println("HTTP/1.1 200 OK");
+            client.println("Content-Type: text/html");
+            client.println("Connection: close");  // 응답을 모두 완료한 후에 연결을 종료시킴.
+            client.println("Access-Control-Allow-Origin: *"); // CORS 요청을 어디서든 허용함.
+            client.println();
+          }
           if(buffer.indexOf("id_send") >= 0) { // SD 카드에 유저 id 저장.
             id = getParam(buffer, "id_send");
             writeData("id", id);
@@ -173,10 +185,11 @@ void loop() {
               Serial.println("Feed");
 
               ms.write(180);
-              delay(waitTime.toInt() * 1000);
+              delay(500 + waitTime.toInt() * 1000);
               ms.write(0);
 
               client.print(1);
+              Serial.println(1);
             } else if(buffer.indexOf("func=temp") >= 0) { // 수온 뿌려주기
               Serial.println("Temp");
               client.print(getTemp());
@@ -187,12 +200,14 @@ void loop() {
                 digitalWrite(PIN_RELAY, HIGH);
 
                 client.print(1);
+                Serial.println(1);
               } else if(buffer.indexOf("status=off") >= 0) { // 조명 끄기 버튼을 누른 경우
                 Serial.println("Light OFF");
 
                 digitalWrite(PIN_RELAY, LOW);
 
                 client.print(1);
+                Serial.println(1);
               }
             }
           } else { // 자동
@@ -206,7 +221,7 @@ void loop() {
               }
               waitTime = getParam(buffer, "wait_time");
               writeData("waittime", waitTime);
-            } else { // 자동 조명 ON/OFF를 설정한 경우
+            } else if(buffer.indexOf("func=light") >= 0) { // 자동 조명 ON/OFF를 설정한 경우
               onTime = getParam(buffer, "onTime");
               if(onTime.indexOf("00:00:01") == 0) { // 자동 조명 ON을 삭제한 경우
                 delData("ontime");
@@ -223,19 +238,20 @@ void loop() {
               }
             }
           }
-          break;
-        }
-        if (c == '\n') {
-          // you're starting a new line
+          buffer = "";
           currentLineIsBlank = true;
         } else if (c != '\r') {
           // you've gotten a character on the current line
           currentLineIsBlank = false;
         }
-      } else {
-        // 통신에 오류가 있을 경우
-        // 이 구문이 없으면 통신에 오류가 있을 경우 프로그램이 오동작 하게 됨.
-        break;
+      } else { // 만약 올바르지 않은 접속이 들어왔을 경우 바로 disconeect 시켜버림.
+        // 데이터를 받을 약간의 여유를 줌.
+      delay(1);
+
+      // 연결 종료.
+      client.stop();
+      Serial.println("client disonnected");
+      digitalWrite(PIN_LEDS, HIGH);
       }
     }
     // 데이터를 받을 약간의 여유를 줌.
@@ -244,7 +260,6 @@ void loop() {
     // 연결 종료.
     client.stop();
     Serial.println("client disonnected");
-    // 시리얼 통신을 하지 않는 경우에 LED가 켜짐으로써 준비가 완료됐다는 걸 알리기 위함.
     digitalWrite(PIN_LEDS, HIGH);
   }
 
