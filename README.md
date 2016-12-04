@@ -30,7 +30,7 @@
 이 프로젝트를 개발하기 위해서는 아래와 같은 내용들이 설치돼있어야 합니다.
 
 * **[Arduino IDE](https://www.arduino.cc/en/Main/Software "아두이노 통합 개발 환경 다운로드 페이지")** - 아두이노 프로그램 코딩을 위한 툴.
-* **[OneWire](http://playground.arduino.cc/Learning/OneWire "OneWire 정보 페이지")** - 아두이노에서 수온 센서를 위한 라이브러리.
+* **[OneWire](https://github.com/PaulStoffregen/OneWire "OneWire 정보 페이지")** - 아두이노에서 수온 센서를 위한 라이브러리.
 * **[DS1302](http://cafe.naver.com/makeitfun/132 "DS1302 예제 및 라이브러리 다운로드 페이지")** - 아두이노에서 리얼 타임 센서를 위한 라이브러리.
 * **[Apach 2.4](https://httpd.apache.org/download.cgi#apache24 "Apache 2.4 다운로드 페이지")** - PHP 5.5+와의 연동을 위해 필요한 웹 서버이다.
 * **[PHP 5.5](http://windows.php.net/download#php-5.5 "PHP 5.5 다운로드 페이지")** - DB 서버와의 연동을 위해 필요한 서버 사이드 스크립트 언어이다.
