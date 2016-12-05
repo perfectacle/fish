@@ -319,9 +319,9 @@ void printWifiStatus() {
 }
 
 // 파라미터의 값을 얻어오는 함수.
-String getParam(String params, String searchParam) {
-  int idx = params.indexOf(searchParam) + searchParam.length() + 1;
-  String temp = params.substring(idx);
+String getParam(String req, String param) {
+  int idx = req.indexOf(param) + param.length() + 1;
+  String temp = req.substring(idx);
   idx = temp.indexOf("&") >= 0 ? temp.indexOf("&") : temp.indexOf(" HTTP/1.1");
   return temp.substring(0, idx);
 }
@@ -366,45 +366,45 @@ void conServ(String _server, String file, String params) {
 }
 
 // SD 카드에 데이터 작성.
-void writeData(String name, String msg) {
+void writeData(String var, String val) {
   // 이미 데이터가 존재하면 삭제
-  if(SD.exists(name + ".txt")) {
-    SD.remove(name + ".txt");
+  if(SD.exists(var + ".txt")) {
+    SD.remove(var + ".txt");
   }
   // 데이터가 존재하지 않으니 재생성.
-  File file = SD.open(name + ".txt", FILE_WRITE);
+  File file = SD.open(var + ".txt", FILE_WRITE);
   if(file) {
-    Serial.println("Writing to " + name);
-    file.print(msg);
+    Serial.println("Writing to " + var);
+    file.print(val);
     file.close();
   } else {
-    Serial.println("error opening file" + name);
+    Serial.println("error opening file" + var);
   }
 }
 
 // SD 카드의 불필요한 데이터는 삭제.
-void delData(String name) {
-  Serial.println("Delete " + name);
-  if(SD.exists(name + ".txt")) {
-    SD.remove(name + ".txt");
+void delData(String var) {
+  Serial.println("Delete " + var);
+  if(SD.exists(var + ".txt")) {
+    SD.remove(var + ".txt");
   }
 }
 
 // SD 카드에서 데이터 얻어오기.
-String getData(String name) {
-  File file = SD.open(name + ".txt");
+String getData(String var) {
+  File file = SD.open(var + ".txt");
   String temp = "";
   if (file) {
     // read from the file until there's nothing else in it:
     while (file.available()) {
       temp += (char)file.read();
     }
-    Serial.println(name + ": " + temp);
+    Serial.println(var + ": " + temp);
     // close the file:
     file.close();
   } else {
     // if the file didn't open, print an error:
-    Serial.println("error opening " + name);
+    Serial.println("error opening " + var);
   }
   return temp;
 }
