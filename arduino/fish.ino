@@ -17,9 +17,9 @@ const int PIN_TEMP = 1;
 const int PIN_RELAY = 2;
 const int PIN_LEDS = 3;
 const int PIN_SD = 4;
-const uint8_t PIN_RST = 5;
+const uint8_t PIN_CLK = 5;
 const uint8_t PIN_DAT = 6;
-const uint8_t PIN_CLK = 8;
+const uint8_t PIN_RST = 8;
 
 /*
  * 서보 모터가 0도에서 진동하면 MIN 값을 조금씩 높여주고,
