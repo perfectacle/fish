@@ -25,10 +25,14 @@
 ## 시연 동영상 (클릭하면 유튜브로 이동)
 [소개 및 수동 밥주기  
 ![소개 및 수동 밥주기](http://img.youtube.com/vi/2OseNBOGf-I/0.jpg)](https://youtu.be/2OseNBOGf-I) 
-[![자동 밥주기](http://img.youtube.com/vi/iRZ_9KACgdI/0.jpg)](https://youtu.be/iRZ_9KACgdI)  
-[![수동 조명 관리](http://img.youtube.com/vi/RsdsY-3NMPw/0.jpg)](https://youtu.be/RsdsY-3NMPw)  
-[![자동 조명 관리](http://img.youtube.com/vi/q_kMgH9hR40/0.jpg)](https://youtu.be/q_kMgH9hR40)  
-[![수온 확인](http://img.youtube.com/vi/9D9eewxVvQ8/0.jpg)](https://youtu.be/9D9eewxVvQ8) 
+[자동 밥주기  
+![자동 밥주기](http://img.youtube.com/vi/iRZ_9KACgdI/0.jpg)](https://youtu.be/iRZ_9KACgdI)  
+[수동 조명 관리  
+![수동 조명 관리](http://img.youtube.com/vi/RsdsY-3NMPw/0.jpg)](https://youtu.be/RsdsY-3NMPw)  
+[자동 조명 관리  
+![자동 조명 관리](http://img.youtube.com/vi/q_kMgH9hR40/0.jpg)](https://youtu.be/q_kMgH9hR40)  
+[수온 확인  
+![수온 확인](http://img.youtube.com/vi/9D9eewxVvQ8/0.jpg)](https://youtu.be/9D9eewxVvQ8) 
 
 ## 스펙
 * **[Arduino 101(Genuino 101)](https://www.arduino.cc/en/Main/ArduinoBoard101 "Arduino 101(Genuino 101) 스펙 정보 페이지")** - 다양한 센서모듈을 이용한 조작이 가능한 하드웨어
