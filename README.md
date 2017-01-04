@@ -23,7 +23,6 @@
   * 앱에서 시간을 지정하면 해당 시간에 맞춰 아두이노가 자동으로 조명을 켜고 끔.  
   
 ## 시연 동영상
-<iframe width="560" height="315" src="https://www.youtube.com/embed/2OseNBOGf-I" frameborder="0" allowfullscreen></iframe>  
 [![소개 및 수동 밥주기](http://img.youtube.com/vi/2OseNBOGf-I/0.jpg)](https://youtu.be/2OseNBOGf-I)  
 [![자동 밥주기](http://img.youtube.com/vi/iRZ_9KACgdI/0.jpg)](https://youtu.be/iRZ_9KACgdI)  
 [![수동 조명 관리](http://img.youtube.com/vi/RsdsY-3NMPw/0.jpg)](https://youtu.be/RsdsY-3NMPw)  
