@@ -14,12 +14,11 @@
 * 먹이주기  
   * 앱에서 버튼을 누르면 아두이노가 수동으로 먹이를 줌.  
   * 앱에서 먹이 줄 시간을 지정하면 해당 시간에 아두이노가 자동으로 먹이를 줌.  
-  * 앱에서 대기 시간을 지정하면 먹이를 줄 때 해당 시간만큼 아두이노의 모터가 대기함.  
-* 수온 관리  
-  * 일정 시간 마다 현재 수온을 업데이트.  
-  * 앱에서 버튼을 누르면 아두이노가 수동으로 히터를 켜고 끌 수 있음.  
-  * 앱에서 온도를 지정하면 해당 온도에 맞춰 아두이노가 자동으로 히터를 켜고 끔.  
-* 조명 관리  
+  * 앱에서 대기 시간을 지정하면 먹이를 줄 때 해당 시간만큼 아두이노의 모터가 대기해 먹이의 양을 조절.  
+* 수온 관리  
+  * 일정 시간 마다 현재 수온을 업데이트.  
+  * 수온에 따른 히터 ON/OFF 프로젝트와 별개로 히터 자체에서 제공.  
+* 조명 관리  
   * 앱에서 버튼을 누르면 아두이노가 수동으로 조명을 켜고 끌 수 있음.  
   * 앱에서 시간을 지정하면 해당 시간에 맞춰 아두이노가 자동으로 조명을 켜고 끔.  
   
@@ -28,12 +27,12 @@
 ![소개 및 수동 밥주기](http://img.youtube.com/vi/2OseNBOGf-I/0.jpg)](https://youtu.be/2OseNBOGf-I) 
 [자동 밥주기  
 ![자동 밥주기](http://img.youtube.com/vi/iRZ_9KACgdI/0.jpg)](https://youtu.be/iRZ_9KACgdI)  
+[수온 확인  
+![수온 확인](http://img.youtube.com/vi/9D9eewxVvQ8/0.jpg)](https://youtu.be/9D9eewxVvQ8) 
 [수동 조명 관리  
 ![수동 조명 관리](http://img.youtube.com/vi/RsdsY-3NMPw/0.jpg)](https://youtu.be/RsdsY-3NMPw)  
 [자동 조명 관리  
 ![자동 조명 관리](http://img.youtube.com/vi/q_kMgH9hR40/0.jpg)](https://youtu.be/q_kMgH9hR40)  
-[수온 확인  
-![수온 확인](http://img.youtube.com/vi/9D9eewxVvQ8/0.jpg)](https://youtu.be/9D9eewxVvQ8) 
 
 ## 스펙
 * **[Arduino 101(Genuino 101)](https://www.arduino.cc/en/Main/ArduinoBoard101 "Arduino 101(Genuino 101) 스펙 정보 페이지")** - 다양한 센서모듈을 이용한 조작이 가능한 하드웨어
