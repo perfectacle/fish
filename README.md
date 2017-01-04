@@ -38,6 +38,9 @@
 [자동 조명 관리  
 ![자동 조명 관리](http://img.youtube.com/vi/q_kMgH9hR40/0.jpg)](https://youtu.be/q_kMgH9hR40)
 
+## 아두이노 회로도
+![아두이노 회로도](./dummy/arduino.png)
+
 ## 스펙
 * **[Arduino 101(Genuino 101)](https://www.arduino.cc/en/Main/ArduinoBoard101 "Arduino 101(Genuino 101) 스펙 정보 페이지")** - 다양한 센서모듈을 이용한 조작이 가능한 하드웨어
 * **[AngularJS 1](https://angularjs.org/ "AngularJS 공식 홈페이지")** - 싱글 페이지 어플리케이션 제작을 위해 구글에서 만든 자바스크립트 프레임워크
